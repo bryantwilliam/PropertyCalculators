@@ -40,9 +40,9 @@ Template Name: Gross Yield Calculator
 
                     <?php include('html/grossyield.html'); ?>
 
-                    </div><!--.article-container -->
+                </div><!--.article-container -->
 
-           <?php do_action( '__after_article_container' ); ##hook of left sidebar ?>
+            <?php do_action( '__after_article_container' ); ##hook of left sidebar ?>
 
 
 
