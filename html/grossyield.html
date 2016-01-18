@@ -1,6 +1,22 @@
 <html>
 <section id="grossyield">
-    <script src="javascript/grossyieldcalculator.js" type="text/javascript"></script>
+    <script type="text/javascript">
+        function displayGrossYield() {
+            var weeklyrent = parseFloat(document.getElementById('weeklyrent').value);
+            var purchaseprice = parseFloat(document.getElementById('purchaseprice').value);
+
+            if (isNaN(weeklyrent)) weeklyrent = 0;
+            if (isNaN(purchaseprice)) purchaseprice = 0;
+
+            var result = calculateGrossYield(weeklyrent, purchaseprice).toFixed(2);
+
+            document.getElementById("grossyieldresult").innerHTML = "<b>Result:</b> " + result + "%";
+        }
+
+        function calculateGrossYield(weeklyrent, purchaseprice) {
+            return (weeklyrent * 52 * 100) / purchaseprice;
+        }
+    </script>
     <center>
         <h3>Gross Yield Calculator:</h3>
 
