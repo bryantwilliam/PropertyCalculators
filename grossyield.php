@@ -38,13 +38,7 @@ Template Name: Gross Yield Calculator
 
                     <?php do_action( '__after_loop' );##hook of the comments and the posts navigation with priorities 10 and 20 ?>
 
-                    <script src="http://code.jquery.com/jquery-1.11.2.min.js">
-                        $(function(){
-                            $("section").load("html/netyield.html");
-                        });
-                    </script>
-
-                    <section id="grossyield"></section>
+                    <?php include('html/grossyield.html'); ?>
 
                     </div><!--.article-container -->
 
