@@ -20,7 +20,7 @@
             if (isNaN(othercosts)) purchaseprice = 0;
             if (isNaN(propertymanager)) weeklyrent = 0;
 
-            var result = calculateWeeklyCashflow(weeklyrent, purchaseprice, rates, repairsmaintenance, bodycorporate,
+            var result = calculateNetYield(weeklyrent, purchaseprice, rates, repairsmaintenance, bodycorporate,
                     insurance, othercosts, propertymanager).toFixed(2);
 
             document.getElementById("result").innerHTML = "<b>Net Yield Result:</b> " + result;
