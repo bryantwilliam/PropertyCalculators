@@ -38,7 +38,7 @@ Template Name: Net Yield Calculator
 
                     <?php do_action( '__after_loop' );##hook of the comments and the posts navigation with priorities 10 and 20 ?>
 
-                    <?php include('html/netyield.html'); ?>
+                    <?php include('html/cashflow.html'); ?>
 
                 </div><!--.article-container -->
 

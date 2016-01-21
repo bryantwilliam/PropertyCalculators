@@ -1,7 +1,7 @@
 <html>
-<section id="netyield">
+<section id="cashflow">
     <script type="text/javascript">
-        function displayNetYield() {
+        function displayCashflow() {
             var weeklyrent = parseFloat(document.getElementById('weeklyrent').value);
             var purchaseprice = parseFloat(document.getElementById('purchaseprice').value);
             var rates = parseFloat(document.getElementById('rates').value);
@@ -20,70 +20,72 @@
             if (isNaN(othercosts)) purchaseprice = 0;
             if (isNaN(propertymanager)) weeklyrent = 0;
 
-            var result = calculateWeeklyCashflow(weeklyrent, purchaseprice, rates, repairsmaintenance, bodycorporate,
-                    insurance, othercosts, propertymanager).toFixed(2);
+            var annualResult = calculateAnnualCashflow(weeklyrent, purchaseprice);
+            var weeklyResult = calculateWeeklyCashflow(weeklyrent, purchaseprice).toFixed(2);
 
-            document.getElementById("result").innerHTML = "<b>Net Yield Result:</b> " + result;
+            document.getElementById("annualcashflowresult").innerHTML = "<b>Annual Cashflow Result:</b> " + annualResult + "%";
+            document.getElementById("weeklycashflowresult").innerHTML = "<b>Weekly Cashflow Result:</b> " + weeklyResult + "%";
         }
 
-        function calculateNetYield(weeklyrent, purchaseprice, rates, repairsmaintenance, bodycorporate, insurance,
-                                   othercosts, propertymanager) {
-            return ((weeklyrent * 52 -
-                    (rates + repairsmaintenance + bodycorporate + insurance + othercosts + propertymanager)) * 100)
-                    / purchaseprice
+        function calculateAnnualCashflow(weeklyrent, purchaseprice) {
+            return (weeklyrent * 52 * 100) / purchaseprice;
         }
 
+        function calculateWeeklyCashflow(weeklyrent, purchaseprice) {
+            return (weeklyrent * 52 * 100) / purchaseprice;
+        }
     </script>
     <center>
         <b>Weekly Rent:</b><br>
         <input type="text" name="weeklyrent" id="weeklyrent" style="width:120px;" placeholder="0"
-               oninput="displayNetYield();">
-
-        <br>
-
-        <b>Rates:</b> (Annual figure)<br>
-        <input type="text" name="rates" id="rates" style="width:120px;" placeholder="0"
-               oninput="displayNetYield();">
-
-        <br>
-
-        <b>Repairs and Maintenance:</b> (Annual figure)<br>
-        <input type="text" name="repairsmaintenance" id="repairsmaintenance" style="width:120px;" placeholder="0"
-               oninput="displayNetYield();">
-
-        <br>
-
-        <b>Body Corporate:</b> (Annual figure)<br>
-        <input type="text" name="bodycorporate" id="bodycorporate" style="width:120px;" placeholder="0"
-               oninput="displayNetYield();">
-
-        <br>
-
-        <b>Insurance:</b> (Annual figure)<br>
-        <input type="text" name="insurance" id="insurance" style="width:120px;" placeholder="0"
-               oninput="displayNetYield();">
-
-        <br>
-
-        <b>Other Costs:</b> (Annual figure)<br>
-        <input type="text" name="othercosts" id="othercosts" style="width:120px;" placeholder="0"
-               oninput="displayNetYield();">
-
-        <br>
-
-        <b>Property Manager:</b> (Enter Management fee as a percentage eg. enter 7.6% as 7.5. Leave as 0 for no management fee)<br>
-        <input type="text" name="propertymanager" id="propertymanager" style="width:120px;" placeholder="0"
-               oninput="displayNetYield();">
+               oninput="displayCashflow();">
 
         <br>
 
         <b>Purchase Price:</b><br>
         <input type="text" name="purchaseprice" id="purchaseprice" style="width:120px;" placeholder="0"
-               oninput="displayNetYield();">
+               oninput="displayCashflow();">
 
         <br>
 
-        <div id="result"><b>Net Yield Result:</b></div>
+        <b>Rates:</b> (Annual figure)<br>
+        <input type="text" name="rates" id="rates" style="width:120px;" placeholder="0"
+               oninput="displayCashflow();">
+
+        <br>
+
+        <b>Repairs and Maintenance:</b> (Annual figure)<br>
+        <input type="text" name="repairsmaintenance" id="repairsmaintenance" style="width:120px;" placeholder="0"
+               oninput="displayCashflow();">
+
+        <br>
+
+        <b>Body Corporate:</b> (Annual figure)<br>
+        <input type="text" name="bodycorporate" id="bodycorporate" style="width:120px;" placeholder="0"
+               oninput="displayCashflow();">
+
+        <br>
+
+        <b>Insurance:</b> (Annual figure)<br>
+        <input type="text" name="insurance" id="insurance" style="width:120px;" placeholder="0"
+               oninput="displayCashflow();">
+
+        <br>
+
+        <b>Other Costs:</b> (Annual figure)<br>
+        <input type="text" name="othercosts" id="othercosts" style="width:120px;" placeholder="0"
+               oninput="displayCashflow();">
+
+        <br>
+
+        <b>Property Manager:</b> (Enter Management fee as a percentage eg. enter 7.6% as 7.5. Leave as 0 for no management fee)<br>
+        <input type="text" name="propertymanager" id="propertymanager" style="width:120px;" placeholder="0"
+               oninput="displayCashflow();">
+
+        <br>
+
+        <div id="annualcashflowresult"><b>Annual Cashflow Result:</b> 0%</div>
+        <div id="weeklycashflowresult"><b>Weekly Cashflow Result:</b> 0%</div>
     </center>
 </section>
 </html>
