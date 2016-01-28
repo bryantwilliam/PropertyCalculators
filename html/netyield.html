@@ -13,12 +13,12 @@
 
             if (isNaN(weeklyrent)) weeklyrent = 0;
             if (isNaN(purchaseprice)) purchaseprice = 0;
-            if (isNaN(rates)) weeklyrent = 0;
-            if (isNaN(repairsmaintenance)) purchaseprice = 0;if (isNaN(weeklyrent)) weeklyrent = 0;
-            if (isNaN(bodycorporate)) purchaseprice = 0;
-            if (isNaN(insurance)) weeklyrent = 0;
-            if (isNaN(othercosts)) purchaseprice = 0;
-            if (isNaN(propertymanager)) weeklyrent = 0;
+            if (isNaN(rates)) rates = 0;
+            if (isNaN(repairsmaintenance)) repairsmaintenance = 0;
+            if (isNaN(bodycorporate)) bodycorporate = 0;
+            if (isNaN(insurance)) insurance = 0;
+            if (isNaN(othercosts)) othercosts = 0;
+            if (isNaN(propertymanager)) propertymanager = 0;
 
             var result = calculateNetYield(weeklyrent, purchaseprice, rates, repairsmaintenance, bodycorporate,
                     insurance, othercosts, propertymanager).toFixed(2);

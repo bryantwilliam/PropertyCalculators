@@ -1,0 +1,188 @@
+<html>
+<section id="loanrepayment">
+    <script type="text/javascript">
+
+        RepaymentFrequencyType = {
+            MONTHLY: {
+                getName: function () {
+                    return "Monthly";
+                }
+            },
+            FORTNIGHTLY: {
+                getName: function () {
+                    return "Fortnightly";
+                }
+            },
+            WEEKLY: {
+                getName: function () {
+                    return "Weekly";
+                }
+            }
+        };
+
+        RepaymentType = {
+            PRINCIPLE_AND_INTEREST: 0,
+            INTEREST_ONLY: 1
+        };
+
+        LoanType = {
+            VARIABLE: {
+                calculateOngoingRepayments: function (repaymentFrequencyType, repaymentType) {
+                    return " ";
+                },
+                calculateTotalInterestPayable: function (repaymentFrequencyType, repaymentType) {
+                    return " ";
+                }
+            },
+
+            FIXED: {
+                calculateFixedRepayments: function (repaymentFrequencyType, repaymentType) {
+                    return " ";
+                },
+                calculateOngoingRepayments: function (repaymentFrequencyType, repaymentType) {
+                    return " ";
+                },
+                calculateTotalInterestPayable: function (repaymentFrequencyType, repaymentType) {
+                    return " ";
+                }
+            }
+        };
+
+        function displayLoanRepayment() {
+            var loanAmount = parseFloat(document.getElementById('loanamount').value);
+            var loanPeriod = parseFloat(document.getElementById('loanperiod').value);
+
+            var loanType;
+            if (document.getElementById('variable').checked) loanType = LoanType.VARIABLE;
+            else if (document.getElementById('fixed').checked) loanType = LoanType.FIXED;
+
+            var interestRate = parseFloat(document.getElementById('interestrate').value);
+            var ongoingRate = parseFloat(document.getElementById('ongoingrate').value);
+            var fixedRate = parseFloat(document.getElementById('fixedrate').value);
+            var fixedTerm = parseFloat(document.getElementById('fixedterm').value);
+
+            var repaymentFrequency;
+            if (document.getElementById('monthly').checked) repaymentFrequency = RepaymentFrequencyType.MONTHLY;
+            else if (document.getElementById('fortnightly').checked) repaymentFrequency = RepaymentFrequencyType.FORTNIGHTLY;
+            else if (document.getElementById('weekly').checked) repaymentFrequency = RepaymentFrequencyType.WEEKLY;
+
+            var repaymentType;
+            if (document.getElementById('principalinterest').checked) loanType = RepaymentType.PRINCIPLE_AND_INTEREST;
+            else if (document.getElementById('interestonly').checked) loanType = RepaymentType.INTEREST_ONLY;
+
+            if (isNaN(loanAmount)) loanAmount = 0;
+            if (isNaN(loanPeriod)) loanPeriod = 0;
+            if (isNaN(interestRate)) interestRate = 0;
+            if (isNaN(ongoingRate)) interestRate = 0;
+            if (isNaN(fixedRate)) interestRate = 0;
+            if (isNaN(fixedTerm)) interestRate = 0;
+
+            if (loanType == LoanType.FIXED) {
+                document.getElementById("interestrate").style.display = "hidden";
+                document.getElementById("ongoingrate").style.display = "visible";
+                document.getElementById("fixedrate").style.display = "visible";
+                document.getElementById("fixedterm").style.display = "visible";
+                document.getElementById("fixedrepayments").style.display = "visible";
+            }
+            else if (loanType == LoanType.VARIABLE) {
+                document.getElementById("interestrate").style.display = "visible";
+                document.getElementById("ongoingrate").style.display = "hidden";
+                document.getElementById("fixedrate").style.display = "hidden";
+                document.getElementById("fixedterm").style.display = "hidden";
+                document.getElementById("fixedrepayments").style.display = "hidden";
+            }
+
+            var ongoingRepaymentsResult = "$" + loanType.calculateOngoingRepayments().toFixed(2);
+
+            var fixedRepaymentsResult;
+            if (loanType == LoanType.FIXED) fixedRepaymentsResult = loanType.calculateFixedRepayments().toFixed(2);
+            else fixedRepaymentsResult = "$0.00";
+
+            var totalInterestPayableResult = loanType.calculateTotalInterestPayable().toFixed(2);
+
+            document.getElementById("ongoingrepayments").innerHTML = "<b>Ongoing " + repaymentFrequency.getName()
+                    + " Repayments:</b>" + ongoingRepaymentsResult;
+            document.getElementById("fixedrepayments").innerHTML = "<b>Fixed " + repaymentFrequency.getName()
+                    + " Repayments:</b>" + fixedRepaymentsResult;
+            document.getElementById("totalinterestpayable").innerHTML = "<b>Total Interest Payable:</b>"
+                    + totalInterestPayableResult;
+        }
+
+
+    </script>
+    <center>
+        <b>Loan Amount:</b><br>
+        <input type="text" name="loanamount" id="loanamount" style="width:120px;" placeholder="0"
+               oninput="displayLoanRepayment();">
+
+        <br>
+
+        <b>Loan Period: (year/s)</b><br>
+        <input type="text" name="loanperiod" id="loanperiod" style="width:120px;" placeholder="0"
+               oninput="displayLoanRepayment();">
+
+        <br>
+
+        <b>Loan Type:</b><br>
+        <form>
+            <input type="radio" name="variable" id="variable" value="variable" checked style="width:120px;"
+                   oninput="displayLoanRepayment();"> Variable<br>
+            <input type="radio" name="fixed" id="fixed" value="fixed" style="width:120px;" placeholder="0"
+                   oninput="displayLoanRepayment();"> Fixed<br>
+        </form>
+
+        <b>Interest Rate: (% p.a)</b><br>
+        <input type="text" name="interestrate" id="interestrate" style="width:120px;" placeholder="0"
+               oninput="displayLoanRepayment();">
+
+        <br>
+
+        <b>Ongoing Rate: (% p.a)</b><br>
+        <input type="text" name="ongoingrate" id="ongoingrate" style="width:120px;" placeholder="0"
+               oninput="displayLoanRepayment();" hidden>
+
+        <br>
+
+        <b>Fixed Rate: (% p.a)</b><br>
+        <input type="text" name="fixedrate" id="fixedrate" style="width:120px;" placeholder="0"
+               oninput="displayLoanRepayment();" hidden>
+
+        <br>
+
+        <b>Fixed Term: (year/s)</b><br>
+        <input type="text" name="fixedterm" id="fixedterm" style="width:120px;" placeholder="0"
+               oninput="displayLoanRepayment();" hidden>
+
+        <br>
+
+        <b>Repayment Frequency:</b><br>
+        <form>
+            <input type="radio" name="monthly" id="monthly" value="monthly" checked style="width:120px;" placeholder="0"
+                   oninput="displayLoanRepayment();"> Monthly<br>
+            <input type="radio" name="fortnightly" id="fortnightly" value="fortnightly" style="width:120px;"
+                   oninput="displayLoanRepayment();"> Fortnightly<br>
+            <input type="radio" name="weekly" id="weekly" value="weekly" style="width:120px;"
+                   oninput="displayLoanRepayment();"> Weekly<br>
+        </form>
+
+        <br>
+
+        <b>Repayment Type:</b><br>
+        <form>
+            <input type="radio" name="principalinterest" id="principalinterest" value="principalinterest" checked
+                   style="width:120px;"
+                   oninput="displayLoanRepayment();"> Principal & Interest<br>
+            <input type="radio" name="interestonly" id="interestonly" value="interestonly" style="width:120px;"
+                   oninput="displayLoanRepayment();"> Interest Only<br>
+        </form>
+
+        <br>
+
+        <div id="ongoingrepayments"><b>Ongoing Monthly Repayments:</b> $0.00</div>
+
+        <div id="fixedrepayments" hidden><b>Fixed Monthly Repayments:</b> $0.00</div>
+
+        <div id="totalinterestpayable"><b>Total Interest Payable:</b> $0.00</div>
+    </center>
+</section>
+</html>
