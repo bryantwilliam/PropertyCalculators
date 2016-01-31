@@ -20,7 +20,7 @@
             if (isNaN(rate)) rate = 0;
             if (isNaN(interestOnlyYears)) interestOnlyYears = 0;
 
-            var interestOnlyResult = (interestOnlyYears == 0 ? 0 : calculateInterestOnlyPayment(rate, amount).toFixed(2));
+            var interestOnlyResult = (interestOnlyYears == 0 ? "0.00" : calculateInterestOnlyPayment(rate, amount).toFixed(2));
             var principalAndInterestResult =
                     calculatePrincipalAndInterestPayment(rate, amount, term, interestOnlyYears).toFixed(2);
 
