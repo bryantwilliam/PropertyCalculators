@@ -6,7 +6,7 @@
         }
 
         function calculatePrincipalAndInterestPayment(rate, amount, term, interestOnlyYears) {
-            return ((rate/100/12)*amount)/(1-(1+(rate/100/12))^(-12*(term-interestOnlyYears)));
+            return ((rate/100/12)*amount)/(1-Math.pow(1+(rate/100/12), -12*(term-interestOnlyYears)));
         }
 
         function displayLoanRepayment() {
@@ -25,10 +25,10 @@
                     calculatePrincipalAndInterestPayment(rate, amount, term, interestOnlyYears).toFixed(2);
 
             document.getElementById("interestonlyresult").innerHTML = '<b>Interest Only Payment:</b> ' + "$"
-                    + interestOnlyResult + ' <p align="right"><b>Term:</b> ' + (term - interestOnlyYears) + ' years.</p>';
+                    + interestOnlyResult + ' <p align="right"><b>Term:</b> ' + interestOnlyYears + ' years.</p>';
 
             document.getElementById("principalinterestresult").innerHTML = '<b>Principal + Interest Only Payment:</b> ' + "$"
-                    + principalAndInterestResult + ' <p align="right"><b>Term:</b> ' + interestOnlyYears + ' years.</p>';
+                    + principalAndInterestResult + ' <p align="right"><b>Term:</b> ' + (term - interestOnlyYears) + ' years.</p>';
         }
 
     </script>
