@@ -20,15 +20,15 @@
             if (isNaN(rate)) rate = 0;
             if (isNaN(interestOnlyYears)) interestOnlyYears = 0;
 
-            var interestOnlyResult = calculateInterestOnlyPayment(rate, amount).toFixed(2);
+            var interestOnlyResult = (interestOnlyYears == 0 ? 0 : calculateInterestOnlyPayment(rate, amount).toFixed(2));
             var principalAndInterestResult =
                     calculatePrincipalAndInterestPayment(rate, amount, term, interestOnlyYears).toFixed(2);
 
             document.getElementById("interestonlyresult").innerHTML = '<b>Interest Only Payment:</b> ' + "$"
-                    + interestOnlyResult + ' <p align="right"><b>Term:</b> ' + interestOnlyYears + ' years.</p>';
+                    + interestOnlyResult + ' for ' + interestOnlyYears + ' years.</p>';
 
             document.getElementById("principalinterestresult").innerHTML = '<b>Principal + Interest Only Payment:</b> ' + "$"
-                    + principalAndInterestResult + ' <p align="right"><b>Term:</b> ' + (term - interestOnlyYears) + ' years.</p>';
+                    + principalAndInterestResult + ' for ' + (term - interestOnlyYears) + ' years.</p>';
         }
 
     </script>
@@ -57,8 +57,8 @@
 
         <br>
 
-        <div id="interestonlyresult"><b>Interest Only Payment:</b> $0.00 <p align="right"><b>Term:</b> 0 years.</p></div>
-        <div id="principalinterestresult"><b>Principal + Interest Payment:</b> $0.00 <p align="right"><b>Term:</b> 0 years.</p></div>
+        <div id="interestonlyresult"><b>Interest Only Payment:</b> $0.00 for 0 years.</div>
+        <div id="principalinterestresult"><b>Principal + Interest Payment:</b> $0.00 for 0 years.</div>
     </center>
 </section>
 </html>
