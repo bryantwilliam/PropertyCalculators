@@ -14,7 +14,7 @@ Template Name: Loanrepayment
 		<main id="main" class="site-main" role="main">
 
 			<?php while ( have_posts() ) : the_post(); ?>
-				<?php include('html/loanrepayment.html'); ?>
+				
 				
 				<?php get_template_part( 'content', 'page' ); ?>
 
@@ -31,6 +31,7 @@ Template Name: Loanrepayment
 
 
 		</main><!-- #main -->
+		<?php include('html/loanrepayment.html'); ?>
 	</div><!-- #primary -->
 
 <?php get_footer(); ?>
