@@ -1,7 +1,7 @@
 <?php
-/**
- * @package Sydney
- */
+/*
+Template Name: Grossyield
+*/
 
 get_header(); ?>
 
