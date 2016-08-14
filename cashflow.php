@@ -14,7 +14,7 @@ Template Name: Cashflow
 		<main id="main" class="site-main" role="main">
 
 			<?php while ( have_posts() ) : the_post(); ?>
-				<?php include('html/cashflow.html'); ?>
+			
 				
 				<?php get_template_part( 'content', 'page' ); ?>
 
@@ -31,6 +31,8 @@ Template Name: Cashflow
 
 
 		</main><!-- #main -->
+		
+		<?php include('html/cashflow.html'); ?>
 	</div><!-- #primary -->
 
 <?php get_footer(); ?>
