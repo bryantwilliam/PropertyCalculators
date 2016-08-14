@@ -1,54 +1,29 @@
 <?php
-/*
-Template Name: Net Yield Calculator
-*/
-?>
-<?php do_action( '__before_main_wrapper' ); ##hook of the header with get_header ?>
-<div id="main-wrapper" class="<?php echo implode(' ', apply_filters( 'tc_main_wrapper_classes' , array('container') ) ) ?>">
+/**
+ * @package Sydney
+ */
 
-    <?php do_action( '__before_main_container' ); ##hook of the featured page (priority 10) and breadcrumb (priority 20)...and whatever you need! ?>
+get_header(); ?>
 
-    <div class="container" role="main">
+	<div id="primary" class="content-area col-md-9">
+	    <?php include('html/cashflow.html'); ?>
+		<main id="main" class="post-wrap" role="main">
 
+			<?php while ( have_posts() ) : the_post(); ?>
 
+				<?php get_template_part( 'content', 'page' ); ?>
 
-        <div class="<?php echo implode(' ', apply_filters( 'tc_column_content_wrapper_classes' , array('row' ,'column-content-wrapper') ) ) ?>">
+				<?php
+					// If comments are open or we have at least one comment, load up the comment template
+					if ( comments_open() || get_comments_number() ) :
+						comments_template();
+					endif;
+				?>
 
-            <?php do_action( '__before_article_container' ); ##hook of left sidebar?>
+			<?php endwhile; // end of the loop. ?>
 
-                <div id="content" class="<?php echo implode(' ', apply_filters( 'tc_article_container_class' , array( TC_utils::tc_get_layout(  TC_utils::tc_id() , 'class' ) , 'article-container' ) ) ) ?>">
+		</main><!-- #main -->
+	</div><!-- #primary -->
 
-                    <?php do_action( '__before_loop' );##hooks the header of the list of post : archive, search... ?>
-
-                        <?php if ( have_posts() ) : ?>
-
-                            <?php while ( have_posts() ) : ##all other cases for single and lists: post, custom post type, page, archives, search, 404 ?>
-
-                                <?php the_post(); ?>
-
-                                <?php do_action( '__before_article' ) ?>
-                                    <article <?php tc__f( '__article_selectors' ) ?>>
-                                        <?php do_action( '__loop' ); ?>
-                                    </article>
-                                <?php do_action( '__after_article' ) ?>
-
-                            <?php endwhile; ?>
-
-                        <?php endif; ##end if have posts ?>
-
-                    <?php do_action( '__after_loop' );##hook of the comments and the posts navigation with priorities 10 and 20 ?>
-
-                    <?php include('html/cashflow.html'); ?>
-
-                </div><!--.article-container -->
-
-            <?php do_action( '__after_article_container' ); ##hook of left sidebar ?>
-
-        </div><!--.row -->
-    </div><!-- .container role: main -->
-
-    <?php do_action( '__after_main_container' ); ?>
-
-</div><!--#main-wrapper"-->
-
-<?php do_action( '__after_main_wrapper' );##hook of the footer with get_get_footer ?>
+<?php get_sidebar(); ?>
+<?php get_footer(); ?>
