@@ -14,7 +14,7 @@ Template Name: Netyield
 		<main id="main" class="site-main" role="main">
 
 			<?php while ( have_posts() ) : the_post(); ?>
-				<?php include('html/netyield.html'); ?>
+				
 				
 				<?php get_template_part( 'content', 'page' ); ?>
 
@@ -31,6 +31,7 @@ Template Name: Netyield
 
 
 		</main><!-- #main -->
+		<?php include('html/netyield.html'); ?>
 	</div><!-- #primary -->
 
 <?php get_footer(); ?>
